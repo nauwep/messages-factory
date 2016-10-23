@@ -17,54 +17,69 @@ It's especially useful when a same message is used multiple times, updating its 
 
 Install from npm
 
-    npm install messages-factory
+```
+npm install messages-factory
+```
 
 Require in your code
 
-    const MessagesFactory = require('messages-factory');
+```javascript
+const MessagesFactory = require('messages-factory');
+```
 
 Manage your messages in an Array with Objects providing a `code` and `message` properties
 
-    const messageDefinitions = [{
-        code: '001',
-        message: '1st message'
-    }, {
-        code: '002',
-        message: '2nd message'
-    }];
+```javascript
+const messageDefinitions = [{
+    code: 'M001',
+    message: '1st message'
+}, {
+    code: 'M002',
+    message: '2nd message'
+}];
+```
 
 Pass the message definitions to the factory
 
-    const messages = new MessagesFactory(messageDefinitions);
+```javascript
+const messages = new MessagesFactory(messageDefinitions);
+```
 
 Get the messages by its code
 
-    console.log('This is my messages: ' + messages.001); // 'This is my messages: 1st message'
+```javascript
+console.log('This is the messages ' + messages.M001); // 'This is the message: 1st message'
+```
 
 Custom values can be integrated by getting the message with its function passing values as argument, the message template uses the arguments by their index and the syntax `{index}`
 
-    const messages = new MessagesFactory([{
-            code: '001',
-            message: 'This is an {0} {1}!'
-        }]);
+```javascript
+const messages = new MessagesFactory([{
+        code: 'M001',
+        message: 'This is an {0} {1}!'
+    }]);
 
-    messages.001('Hello', 'World'); // 'This is an Hello World!'
+messages.M001('Hello', 'World'); // 'This is an Hello World!'
+```
 
 ## Example
 
-    // messages.json
-    [{
-        "code": "APP_001",
-        "message": "Server ready"
-    }, {
-        "code": "APP_002",
-        "message": "Server listening on port {0}"
-    }]
+```json
+// messages.json
+[{
+    "code": "APP_001",
+    "message": "Server ready"
+}, {
+    "code": "APP_002",
+    "message": "Server listening on port {0}"
+}]
+```
 
+```javascript
+// app.js
+const MessagesFactory = require('messages-factory');
+const messages = new MessagesFactory(require('./messages.json'));
 
-    // app.js
-    const MessagesFactory = require('messages-factory');
-    const messages = new MessagesFactory(require('./messages.json'));
-
-    console.log(messages.APP_001());        // 'Server ready'
-    console.log(messages.APP_002(8080));    // 'Server listening on port 8080'
+console.log(messages.APP_001());        // 'Server ready'
+console.log(messages.APP_002(8080));    // 'Server listening on port 8080'
+```
