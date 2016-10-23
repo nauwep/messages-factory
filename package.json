@@ -1,6 +1,6 @@
 {
     "name": "messages-factory",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Define your log messages in a dedicated file, then use them by their code",
     "keywords": [
         "message",
@@ -12,7 +12,7 @@
         "cover": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R min",
         "coveralls": "rm -rf ./coverage && npm run cover && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js"
     },
-    "engine": {
+    "engines": {
         "node": ">=6.0.0"
     },
     "repository": {
